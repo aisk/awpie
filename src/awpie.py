@@ -3,11 +3,11 @@ import sys
 
 
 def main():
-    if len(sys.argv) >= 2:
-        prog = sys.argv[1]
-    else:
-        prog = """Usage: awpie 'prog' [file ...]"""
+    if len(sys.argv) < 2:
+        print('''Usage: awpie 'prog' [file ...]''', file=sys.stderr)
+        return 1
 
+    prog = sys.argv[1]
     files = ['-']
     if len(sys.argv) >= 3:
         files = sys.argv[2:]
