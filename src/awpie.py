@@ -18,6 +18,13 @@ def main():
             'line': line,
             'stdout': sys.stdout,
             'stderr': sys.stderr,
+            'filename': fileinput.filename(),
+            'fileno': fileinput.fileno(),
+            'lineno': fileinput.lineno(),
+            'filelineno': fileinput.filelineno(),
+            'isfirstline': fileinput.isfirstline(),
+            'isstdin': fileinput.isstdin(),
+            'nextfile': fileinput.nextfile,
         })
 
 
