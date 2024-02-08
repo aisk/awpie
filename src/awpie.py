@@ -7,6 +7,7 @@ def main():
         print('''Usage: awpie 'prog' [file ...]''', file=sys.stderr)
         return 1
 
+    sep = None
     prog = sys.argv[1]
     files = ['-']
     if len(sys.argv) >= 3:
@@ -14,8 +15,10 @@ def main():
 
     for line in fileinput.input(files=files):
         line = line.strip('\r\n')
+        fields = line.split(sep)
         exec(prog, None, {
             'line': line,
+            'fields': fields,
             'stdout': sys.stdout,
             'stderr': sys.stderr,
             'filename': fileinput.filename(),
