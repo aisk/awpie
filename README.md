@@ -1,6 +1,6 @@
 # awpie
 
-![logo](https://cdn.epiccarry.com/wp-content/uploads/sites/31/2023/11/cs2-subtick-1.webp)
+![logo](https://i.ytimg.com/vi/M1Xlo4fLlJs/maxresdefault.jpg)
 
 Using Python as awk alternative.
 
