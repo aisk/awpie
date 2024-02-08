@@ -24,4 +24,4 @@ dev-dependencies = []
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/awpie"]
+packages = ["src/awpie.py"]
