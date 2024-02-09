@@ -1,4 +1,5 @@
 import fileinput
+import getopt
 import sys
 
 
@@ -11,18 +12,27 @@ class UserData(dict):
     def __setattr__(self, key, value):
         self[key] = value
 
+def usage():
+    print('''Usage: awpie 'prog' [file ...]''', file=sys.stderr)
+
+
 
 def main():
-    if len(sys.argv) < 2:
-        print('''Usage: awpie 'prog' [file ...]''', file=sys.stderr)
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], '', [])
+    except getopt.GetoptError as err:
+        print(err, file=sys.stderr)
+        usage()
+        return 1
+    if not args:
         return 1
 
     sep = None
-    prog = sys.argv[1]
+    prog = args[0]
     data = UserData()
     files = ['-']
-    if len(sys.argv) >= 3:
-        files = sys.argv[2:]
+    if len(sys.argv) >= 2:
+        files = args[1:]
 
     for line in fileinput.input(files=files):
         line = line.strip('\r\n')
