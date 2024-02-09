@@ -1,7 +1,20 @@
+import collections
 import fileinput
+import functools
 import getopt
-import sys
 import importlib
+import itertools
+import operator
+import os
+import sys
+
+
+# Make some linters (pyright) happy.
+_ = collections
+_ = functools
+_ = itertools
+_ = operator
+_ = os
 
 
 class UserData(dict):
