@@ -40,6 +40,7 @@ def main():
             'isfirstline': fileinput.isfirstline(),
             'isstdin': fileinput.isstdin(),
             'nextfile': fileinput.nextfile,
+            'close': fileinput.close,
         })
 
 
