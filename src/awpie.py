@@ -6,7 +6,7 @@ class UserData(dict):
     def __getattr__(self, key):
         if key not in self:
             raise AttributeError(key)
-        return self['key']
+        return self[key]
 
     def __setattr__(self, key, value):
         self[key] = value
