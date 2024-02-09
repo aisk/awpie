@@ -2,6 +2,16 @@ import fileinput
 import sys
 
 
+class UserData(dict):
+    def __getattr__(self, key):
+        if key not in self:
+            raise AttributeError(key)
+        return self['key']
+
+    def __setattr__(self, key, value):
+        self[key] = value
+
+
 def main():
     if len(sys.argv) < 2:
         print('''Usage: awpie 'prog' [file ...]''', file=sys.stderr)
@@ -9,6 +19,7 @@ def main():
 
     sep = None
     prog = sys.argv[1]
+    data = UserData()
     files = ['-']
     if len(sys.argv) >= 3:
         files = sys.argv[2:]
@@ -19,6 +30,7 @@ def main():
         exec(prog, None, {
             'line': line,
             'fields': fields,
+            'data': data,
             'stdout': sys.stdout,
             'stderr': sys.stderr,
             'filename': fileinput.filename(),
