@@ -33,7 +33,7 @@ banana
 | Name          | Description                                                            |
 | ------------- | ---------------------------------------------------------------------- |
 | `line`        | Current line.                                                          |
-| `fields`      | Result of `line.split()`.                                              |
+| `fields`      | Result of `line.split(sep)`. `sep` can be specified in arguments.      |
 | `data`        | An empty dict, can be used to store custom values.                     |
 | `stdout`      | `sys.stdout`.                                                          |
 | `stderr`      | `sys.stderr`.                                                          |
