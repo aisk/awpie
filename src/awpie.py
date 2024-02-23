@@ -28,10 +28,10 @@ class UserData(dict):
 
 
 def main():
-    usage = '''Usage: awpie [--sep=separator] [--imports=module1,module2] 'prog' [file ...]'''
+    usage = '''Usage: awpie [--sep=separator] [--imports=module1,module2] [--begin='prog'] [--end='prog'] 'prog' [file ...]'''
 
     try:
-        opts, args = getopt.getopt(sys.argv[1:], '', ['sep=', 'imports='])
+        opts, args = getopt.getopt(sys.argv[1:], '', ['sep=', 'imports=', 'begin=', 'end='])
     except getopt.GetoptError as err:
         print(err, file=sys.stderr)
         print(usage, file=sys.stderr)
@@ -46,16 +46,24 @@ def main():
     if len(sys.argv) >= 2:
         files = args[1:]
     sep = None
+    begin = ''
+    end = ''
     for o, a in opts:
         if o == '--sep':
             sep = a
-        if o == '--imports':
+        elif o == '--imports':
             modules = a.split(',')
             for m in modules:
                 if not m:
                     continue
                 m = m.strip()
                 globals()[m] = importlib.import_module(m)
+        elif o == '--begin':
+            begin = a
+        elif o == '--end':
+            end = a
+
+    exec(begin, None, {'data': data})
 
     for line in fileinput.input(files=files):
         line = line.strip('\r\n')
@@ -75,6 +83,8 @@ def main():
             'nextfile': fileinput.nextfile,
             'close': fileinput.close,
         })
+
+    exec(end, None, {'data': data})
 
 
 if __name__ == '__main__':
