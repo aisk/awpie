@@ -28,6 +28,49 @@ apple
 banana
 ```
 
+## Command Line Options
+
+```sh
+$ awpie
+Usage: awpie [--sep=separator] [--imports=module1,module2] [--begin='prog'] [--end='prog'] 'prog' [file ...]
+```
+
+### `sep`
+
+Separator used to split a line, default value is blank.
+
+### `imports`
+
+Specify which modules will be imported before executing all codes. Can specify multiple modules like `--imports=csv,tomlib`.
+
+These modules are imported by default:
+
+- collections
+- fileinput
+- functools
+- getopt
+- importlib
+- itertools
+- operator
+- os
+- sys
+
+### `begin`
+
+Codes that will be executed before processing all files.
+
+### `end`
+
+Codes that will be executed after processing all files.
+
+### `prog`
+
+Codes that will be executed for every line.
+
+### `file`
+
+File to process. Default is to read a stream from `stdin` as the file.
+
 ## Local variables
 
 | Name          | Type        | Description                                                            |
